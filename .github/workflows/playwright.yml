@@ -33,7 +33,7 @@ jobs:
 
       # 4️⃣ Instalar navegadores de Playwright
       - name: Install Playwright Browsers
-        run: npx playwright install ${{ matrix.browser }}
+        run: npx playwright install --with-deps
 
       # 5️⃣ Ejecutar tests
       - name: Run Playwright tests
