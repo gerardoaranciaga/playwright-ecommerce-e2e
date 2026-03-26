@@ -32,8 +32,16 @@ jobs:
         run: npm ci
 
       # 4️⃣ Instalar navegadores de Playwright
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      
+      # Para WebKit (con dependencias del sistema)
+      - name: Install Playwright (WebKit)
+        if: matrix.browser == 'webkit'
+        run: npx playwright install --with-deps webkit
+
+      # Para Chromium y Firefox (rápido)
+      - name: Install Playwright (Chromium/Firefox)
+        if: matrix.browser != 'webkit'
+        run: npx playwright install ${{ matrix.browser }}
 
       # 5️⃣ Ejecutar tests
       - name: Run Playwright tests
